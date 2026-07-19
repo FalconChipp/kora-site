@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const STATS = [
   { value: "93%", label: "Positive outcomes evidenced" },
@@ -76,9 +77,7 @@ const SETTINGS = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-full bg-ivory font-[family-name:var(--font-inter)]">
-
       <Nav />
-
       <main className="flex flex-col flex-1">
 
         {/* Hero */}
@@ -87,32 +86,30 @@ export default function Home() {
             <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-moss blur-3xl" />
             <div className="absolute bottom-0 left-1/4 w-64 h-64 rounded-full bg-sage blur-3xl" />
           </div>
-          <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24 lg:py-36">
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-36">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">
                 Care. Insight. Better Outcomes.
               </p>
-              <h1
-                className="font-[family-name:var(--font-sora)] font-semibold text-4xl sm:text-5xl lg:text-6xl leading-tight text-ivory mb-6"
-              >
+              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl lg:text-6xl leading-tight text-ivory mb-4 sm:mb-6">
                 The outcomes platform built for young person care.
               </h1>
-              <p className="text-lg text-sage/80 leading-relaxed max-w-xl mb-10">
+              <p className="text-base sm:text-lg text-sage/80 leading-relaxed max-w-xl mb-8 sm:mb-10">
                 KORA helps residential care teams understand patterns, track progress, and evidence outcomes — automatically. Not just recording information, but turning it into insight.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex justify-center items-center rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
                 >
                   Request a demo
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 rounded-full border border-sage/40 px-7 py-3.5 text-sm font-semibold text-ivory hover:border-sage hover:bg-white/5 transition-colors"
+                </Link>
+                <Link
+                  href="/product"
+                  className="inline-flex justify-center items-center rounded-full border border-sage/40 px-7 py-3.5 text-sm font-semibold text-ivory hover:border-sage hover:bg-white/5 transition-colors"
                 >
                   See how it works →
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -120,9 +117,9 @@ export default function Home() {
 
         {/* Stats */}
         <section className="bg-moss">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             {STATS.map(({ value, label }) => (
-              <div key={label}>
+              <div key={label} className="py-2 sm:py-0">
                 <p className="font-[family-name:var(--font-sora)] font-semibold text-4xl text-ivory mb-1">
                   {value}
                 </p>
@@ -133,24 +130,24 @@ export default function Home() {
         </section>
 
         {/* Features */}
-        <section className="py-24 bg-ivory">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-4">Platform</p>
-              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl lg:text-4xl text-forest leading-snug mb-4">
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-16">
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">Platform</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug mb-3 sm:mb-4">
                 Powerful insights, made simple.
               </h2>
-              <p className="text-base text-charcoal/60 leading-relaxed">
+              <p className="text-sm sm:text-base text-charcoal/60 leading-relaxed">
                 Most systems are good at recording information. KORA is built to turn that information into understanding — automatically, in real time.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {FEATURES.map(({ icon, title, body }) => (
-                <div key={title} className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-sage/30 hover:border-sage transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-forest/8 flex items-center justify-center text-forest">
+                <div key={title} className="flex flex-col gap-3 sm:gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-sage/30 hover:border-sage transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-forest/8 flex items-center justify-center text-forest flex-shrink-0">
                     {icon}
                   </div>
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-lg text-forest">
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base sm:text-lg text-forest">
                     {title}
                   </h3>
                   <p className="text-sm text-charcoal/60 leading-relaxed">{body}</p>
@@ -161,18 +158,18 @@ export default function Home() {
         </section>
 
         {/* Settings section */}
-        <section className="py-24 bg-forest">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+        <section className="py-16 sm:py-24 bg-forest">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4">Who it&apos;s for</p>
-              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl lg:text-4xl text-ivory leading-snug mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-3 sm:mb-4">Who it&apos;s for</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-ivory leading-snug mb-4 sm:mb-6">
                 Built for every setting that supports young people.
               </h2>
-              <p className="text-base text-sage/70 leading-relaxed">
+              <p className="text-sm sm:text-base text-sage/70 leading-relaxed">
                 Whether you run a single home or a network of services, KORA adapts to your setting — with complete data isolation between homes and organisation-level oversight.
               </p>
             </div>
-            <ul className="flex flex-col gap-3">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3">
               {SETTINGS.map((setting) => (
                 <li key={setting} className="flex items-center gap-3 text-sm text-ivory/80">
                   <span className="w-5 h-5 rounded-full bg-moss/40 flex items-center justify-center flex-shrink-0">
@@ -188,28 +185,26 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-ivory text-center">
-          <div className="mx-auto max-w-2xl px-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-4">Get started</p>
-            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl lg:text-4xl text-forest leading-snug mb-6">
+        <section className="py-16 sm:py-24 bg-ivory text-center">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">Get started</p>
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug mb-4 sm:mb-6">
               Better decisions, every time.
             </h2>
-            <p className="text-base text-charcoal/60 leading-relaxed mb-10">
+            <p className="text-sm sm:text-base text-charcoal/60 leading-relaxed mb-8 sm:mb-10">
               Join care providers already using KORA to evidence outcomes, reduce reporting burden, and focus more time on the young people they support.
             </p>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
             >
               Request a demo
-            </a>
+            </Link>
           </div>
         </section>
 
       </main>
-
       <Footer />
-
     </div>
   );
 }

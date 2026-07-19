@@ -46,14 +46,14 @@ export default function ProductPage() {
       <main className="flex flex-col flex-1">
 
         {/* Hero */}
-        <section className="bg-forest py-24 lg:py-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section className="bg-forest py-16 sm:py-24 lg:py-32">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">The Product</p>
-              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-4xl sm:text-5xl lg:text-6xl text-ivory leading-tight mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">The Product</p>
+              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight mb-4 sm:mb-6">
                 Recording is just the beginning.
               </h1>
-              <p className="text-lg text-sage/80 leading-relaxed max-w-xl mb-10">
+              <p className="text-base sm:text-lg text-sage/80 leading-relaxed max-w-xl mb-8 sm:mb-10">
                 KORA is the platform that turns the information your team already records into meaningful insight about the young people in your care.
               </p>
               <Link
@@ -67,21 +67,21 @@ export default function ProductPage() {
         </section>
 
         {/* How it works */}
-        <section className="py-24 bg-ivory">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-4">How it works</p>
-              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl lg:text-4xl text-forest leading-snug">
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-16">
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">How it works</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug">
                 Simple for staff. Powerful for managers.
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
               {HOW_IT_WORKS.map(({ step, title, body }) => (
-                <div key={step} className="flex flex-col gap-4">
+                <div key={step} className="flex flex-col gap-3 sm:gap-4">
                   <span className="font-[family-name:var(--font-sora)] font-semibold text-5xl text-sage leading-none">
                     {step}
                   </span>
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-xl text-forest">{title}</h3>
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-lg sm:text-xl text-forest">{title}</h3>
                   <p className="text-sm text-charcoal/60 leading-relaxed">{body}</p>
                 </div>
               ))}
@@ -90,18 +90,18 @@ export default function ProductPage() {
         </section>
 
         {/* Differentiators */}
-        <section className="py-24 bg-forest">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4">Why KORA</p>
-              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl lg:text-4xl text-ivory leading-snug">
+        <section className="py-16 sm:py-24 bg-forest">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-16">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-3 sm:mb-4">Why KORA</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-ivory leading-snug">
                 Different by design.
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {DIFFERENTIATORS.map(({ title, body }) => (
-                <div key={title} className="p-8 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-lg text-ivory mb-3">{title}</h3>
+                <div key={title} className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10">
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base sm:text-lg text-ivory mb-3">{title}</h3>
                   <p className="text-sm text-sage/70 leading-relaxed">{body}</p>
                 </div>
               ))}
@@ -110,12 +110,12 @@ export default function ProductPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-ivory text-center">
-          <div className="mx-auto max-w-2xl px-6">
-            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl text-forest mb-6">
+        <section className="py-16 sm:py-24 bg-ivory text-center">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6">
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-forest mb-4 sm:mb-6">
               See KORA in action.
             </h2>
-            <p className="text-base text-charcoal/60 mb-10">
+            <p className="text-sm sm:text-base text-charcoal/60 mb-8 sm:mb-10">
               Book a demo and we&apos;ll walk you through the platform with your specific setting in mind.
             </p>
             <Link

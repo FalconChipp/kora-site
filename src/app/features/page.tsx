@@ -57,29 +57,31 @@ export default function FeaturesPage() {
       <main className="flex flex-col flex-1">
 
         {/* Hero */}
-        <section className="bg-forest py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">Features</p>
-            <h1 className="font-[family-name:var(--font-sora)] font-semibold text-4xl sm:text-5xl text-ivory leading-tight mb-6">
-              Everything your team needs, nothing they don&apos;t.
-            </h1>
-            <p className="text-lg text-sage/80 leading-relaxed max-w-xl">
-              KORA is built around the real workflows of residential care — from quick shift logs to full statutory reports.
-            </p>
+        <section className="bg-forest py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">Features</p>
+              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl text-ivory leading-tight mb-4 sm:mb-6">
+                Everything your team needs, nothing they don&apos;t.
+              </h1>
+              <p className="text-base sm:text-lg text-sage/80 leading-relaxed max-w-xl">
+                KORA is built around the real workflows of residential care — from quick shift logs to full statutory reports.
+              </p>
+            </div>
           </div>
         </section>
 
         {/* Feature groups */}
-        <section className="py-24 bg-ivory">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-20">
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col gap-14 sm:gap-20">
             {FEATURE_GROUPS.map(({ category, items }) => (
               <div key={category}>
-                <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl text-forest mb-8 pb-4 border-b border-sage/40">
+                <h2 className="font-[family-name:var(--font-sora)] font-semibold text-xl sm:text-2xl text-forest mb-6 sm:mb-8 pb-4 border-b border-sage/40">
                   {category}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
                   {items.map(({ title, body }) => (
-                    <div key={title} className="flex flex-col gap-3 p-6 rounded-2xl bg-white border border-sage/30">
+                    <div key={title} className="flex flex-col gap-3 p-5 sm:p-6 rounded-2xl bg-white border border-sage/30">
                       <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base text-forest">{title}</h3>
                       <p className="text-sm text-charcoal/60 leading-relaxed">{body}</p>
                     </div>
@@ -91,9 +93,9 @@ export default function FeaturesPage() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-forest text-center">
-          <div className="mx-auto max-w-2xl px-6">
-            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-3xl text-ivory mb-6">
+        <section className="py-16 sm:py-24 bg-forest text-center">
+          <div className="mx-auto max-w-2xl px-4 sm:px-6">
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-ivory mb-4 sm:mb-6">
               Want to see these features in your setting?
             </h2>
             <Link

@@ -4,7 +4,7 @@ import KoraLogo from "./KoraLogo";
 export default function Footer() {
   return (
     <footer className="bg-charcoal py-12">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <Link href="/">
           <KoraLogo className="h-6 w-auto brightness-0 invert opacity-70" />
         </Link>

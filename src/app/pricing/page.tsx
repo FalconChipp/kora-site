@@ -85,14 +85,14 @@ export default function PricingPage() {
       <main className="flex flex-col flex-1">
 
         {/* Hero */}
-        <section className="bg-forest py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section className="bg-forest py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">Pricing</p>
-              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-4xl sm:text-5xl text-ivory leading-tight mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">Pricing</p>
+              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl text-ivory leading-tight mb-4 sm:mb-6">
                 Straightforward pricing. No surprises.
               </h1>
-              <p className="text-lg text-sage/80 leading-relaxed">
+              <p className="text-base sm:text-lg text-sage/80 leading-relaxed">
                 Per home, per month. Start with a 30-day free trial on any plan.
               </p>
             </div>
@@ -100,13 +100,13 @@ export default function PricingPage() {
         </section>
 
         {/* Plans */}
-        <section className="py-24 bg-ivory">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-start">
               {PLANS.map(({ name, price, per, description, highlight, features }) => (
                 <div
                   key={name}
-                  className={`flex flex-col rounded-2xl border p-8 ${
+                  className={`flex flex-col rounded-2xl border p-6 sm:p-8 ${
                     highlight
                       ? "bg-forest border-forest text-ivory"
                       : "bg-white border-sage/30"
@@ -115,14 +115,14 @@ export default function PricingPage() {
                   <p className={`text-xs font-semibold uppercase tracking-widest mb-4 ${highlight ? "text-sage" : "text-moss"}`}>
                     {name}
                   </p>
-                  <div className="mb-2">
+                  <div className="mb-1">
                     <span className={`font-[family-name:var(--font-sora)] font-semibold text-4xl ${highlight ? "text-ivory" : "text-forest"}`}>
                       {price}
                     </span>
                   </div>
                   <p className={`text-xs mb-4 ${highlight ? "text-sage" : "text-charcoal/50"}`}>{per}</p>
-                  <p className={`text-sm mb-8 leading-relaxed ${highlight ? "text-sage/80" : "text-charcoal/60"}`}>{description}</p>
-                  <ul className="flex flex-col gap-3 mb-10 flex-1">
+                  <p className={`text-sm mb-6 sm:mb-8 leading-relaxed ${highlight ? "text-sage/80" : "text-charcoal/60"}`}>{description}</p>
+                  <ul className="flex flex-col gap-2.5 sm:gap-3 mb-8 sm:mb-10 flex-1">
                     {features.map((f) => (
                       <li key={f} className={`flex items-start gap-2.5 text-sm ${highlight ? "text-ivory/80" : "text-charcoal/70"}`}>
                         <svg viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 mt-0.5 flex-shrink-0 ${highlight ? "text-sage" : "text-moss"}`}>
@@ -149,15 +149,15 @@ export default function PricingPage() {
         </section>
 
         {/* FAQs */}
-        <section className="py-24 bg-ivory border-t border-sage/30">
-          <div className="mx-auto max-w-3xl px-6 lg:px-8">
-            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl text-forest mb-12">
+        <section className="py-16 sm:py-24 bg-ivory border-t border-sage/30">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-xl sm:text-2xl text-forest mb-8 sm:mb-12">
               Frequently asked questions
             </h2>
             <div className="flex flex-col divide-y divide-sage/30">
               {FAQS.map(({ q, a }) => (
-                <div key={q} className="py-6">
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base text-forest mb-2">{q}</h3>
+                <div key={q} className="py-5 sm:py-6">
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-sm sm:text-base text-forest mb-2">{q}</h3>
                   <p className="text-sm text-charcoal/60 leading-relaxed">{a}</p>
                 </div>
               ))}

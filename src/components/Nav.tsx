@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import KoraLogo from "./KoraLogo";
 
@@ -10,13 +13,17 @@ const NAV_LINKS = [
 ];
 
 export default function Nav() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-ivory/90 backdrop-blur border-b border-sage/40">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link href="/">
-          <KoraLogo className="h-8 w-auto" />
+    <header className="sticky top-0 z-50 bg-ivory/95 backdrop-blur border-b border-sage/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <Link href="/" onClick={() => setOpen(false)}>
+          <KoraLogo className="h-7 sm:h-8 w-auto" />
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           {NAV_LINKS.map(({ label, href }) => (
             <Link
               key={label}
@@ -27,18 +34,74 @@ export default function Nav() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="#" className="hidden sm:inline text-sm font-medium text-forest hover:text-moss transition-colors">
+
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="#"
+            className="hidden lg:inline text-sm font-medium text-forest hover:text-moss transition-colors"
+          >
             Sign in
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-forest px-5 py-2 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
+            className="hidden sm:inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
           >
             Request demo
           </Link>
+
+          {/* Hamburger */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-lg hover:bg-sage/20 transition-colors"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            <span
+              className={`block w-5 h-0.5 bg-charcoal transition-transform origin-center ${open ? "translate-y-2 rotate-45" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-charcoal transition-opacity ${open ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-charcoal transition-transform origin-center ${open ? "-translate-y-2 -rotate-45" : ""}`}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden bg-ivory border-t border-sage/30 px-4 py-4 flex flex-col">
+          <nav className="flex flex-col gap-1">
+            {NAV_LINKS.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="px-3 py-2.5 text-base font-medium text-charcoal/80 hover:text-forest hover:bg-sage/20 rounded-lg transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mt-4 pt-4 border-t border-sage/30 flex flex-col gap-3">
+            <Link
+              href="#"
+              onClick={() => setOpen(false)}
+              className="px-3 py-2.5 text-base font-medium text-forest hover:bg-sage/20 rounded-lg transition-colors"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="inline-flex justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
+            >
+              Request demo
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

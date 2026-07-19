@@ -16,14 +16,14 @@ export default function ContactPage() {
       <main className="flex flex-col flex-1">
 
         {/* Hero */}
-        <section className="bg-forest py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <section className="bg-forest py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">Contact</p>
-              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-4xl sm:text-5xl text-ivory leading-tight mb-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">Contact</p>
+              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl text-ivory leading-tight mb-4 sm:mb-6">
                 Let&apos;s talk.
               </h1>
-              <p className="text-lg text-sage/80 leading-relaxed">
+              <p className="text-base sm:text-lg text-sage/80 leading-relaxed">
                 Whether you want a demo, have a question, or just want to understand if KORA is right for your setting — get in touch and we&apos;ll come back to you within one working day.
               </p>
             </div>
@@ -31,13 +31,13 @@ export default function ContactPage() {
         </section>
 
         {/* Form + info */}
-        <section className="py-24 bg-ivory">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-16">
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
             {/* Form */}
             <div>
-              <form className="flex flex-col gap-6" action="mailto:hello@sixbyfive.com" method="GET">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form className="flex flex-col gap-5 sm:gap-6" action="mailto:hello@sixbyfive.com" method="GET">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                   <div className="flex flex-col gap-1.5">
                     <label htmlFor="first" className="text-xs font-semibold text-charcoal/70 uppercase tracking-wide">
                       First name
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="self-start inline-flex rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
+                  className="w-full sm:w-auto sm:self-start inline-flex justify-center rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
                 >
                   Send message
                 </button>
@@ -127,9 +127,9 @@ export default function ContactPage() {
             </div>
 
             {/* Info */}
-            <div className="flex flex-col gap-10 lg:pt-2">
+            <div className="flex flex-col gap-8 sm:gap-10 lg:pt-2">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3">Response time</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-2 sm:mb-3">Response time</p>
                 <p className="text-sm text-charcoal/60 leading-relaxed">
                   We respond to all enquiries within one working day. For urgent matters, email us directly at{" "}
                   <a href="mailto:hello@sixbyfive.com" className="text-moss underline underline-offset-2 hover:text-forest transition-colors">
@@ -138,8 +138,8 @@ export default function ContactPage() {
                 </p>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3">What to expect from a demo</p>
-                <ul className="flex flex-col gap-2.5 text-sm text-charcoal/60">
+                <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-2 sm:mb-3">What to expect from a demo</p>
+                <ul className="flex flex-col gap-2 sm:gap-2.5 text-sm text-charcoal/60">
                   {[
                     "A 30-minute call, no obligation",
                     "We walk through the platform with your setting in mind",
@@ -156,7 +156,7 @@ export default function ContactPage() {
                   ))}
                 </ul>
               </div>
-              <div className="p-6 rounded-2xl bg-forest/5 border border-sage/30">
+              <div className="p-5 sm:p-6 rounded-2xl bg-forest/5 border border-sage/30">
                 <p className="font-[family-name:var(--font-sora)] font-semibold text-base text-forest mb-2">
                   Made by SixByFive
                 </p>
