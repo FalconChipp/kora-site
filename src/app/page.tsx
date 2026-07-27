@@ -102,7 +102,7 @@ export default function Home() {
                   href="/contact"
                   className="inline-flex justify-center items-center rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
                 >
-                  Request a demo
+                  Start free trial
                 </Link>
                 <Link
                   href="/product"
@@ -111,6 +111,7 @@ export default function Home() {
                   See how it works →
                 </Link>
               </div>
+              <p className="text-xs text-sage/60 mt-3">7-day free trial · No card required · Cancel anytime</p>
             </div>
           </div>
         </section>

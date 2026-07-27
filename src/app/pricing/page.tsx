@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-const KORA_FEATURES = [
+const FEATURES = [
   "Unlimited staff accounts",
   "Young-person profiles",
   "Daily records and handovers",
@@ -18,11 +18,15 @@ const KORA_FEATURES = [
 const FAQS = [
   {
     q: "Is there a free trial?",
-    a: "Yes — every plan starts with a 30-day free trial, no card required. We'll onboard your team and get your first home set up during the trial period.",
+    a: "Yes — every new home starts with a 7-day free trial, no card required. We'll onboard your team and get everything set up during the trial period.",
   },
   {
     q: "Are there any setup fees or per-user charges?",
-    a: "No. £149/month is the full cost — no setup fee, no per-seat pricing, no hidden extras. All staff accounts are included.",
+    a: "No. £125/month for your first home, then £25/month for each additional home. No setup fee, no per-seat pricing, no hidden extras.",
+  },
+  {
+    q: "How does pricing work for multiple homes?",
+    a: "Your first home is £125/month. Every home you add after that is £25/month. A provider with three homes pays £175/month in total.",
   },
   {
     q: "Where is our data stored?",
@@ -32,11 +36,44 @@ const FAQS = [
     q: "Can we cancel anytime?",
     a: "Yes, you can cancel at any time with no penalty. Your data remains accessible for 30 days after cancellation so you can export anything you need.",
   },
-  {
-    q: "What does the Enterprise plan include?",
-    a: "Enterprise is for larger providers who need multi-team oversight, SSO, integrations with existing systems, migration support, or contractual service levels. Get in touch and we'll put together a proposal.",
-  },
 ];
+
+const SCALE_EXAMPLES = [
+  { homes: 1, label: "1 home", price: 125 },
+  { homes: 2, label: "2 homes", price: 150 },
+  { homes: 3, label: "3 homes", price: 175 },
+  { homes: 5, label: "5 homes", price: 225 },
+];
+
+function Check({ muted }: { muted?: boolean }) {
+  return (
+    <span className="inline-flex justify-center">
+      <svg viewBox="0 0 20 20" fill="currentColor" className={`w-5 h-5 ${muted ? "text-charcoal/25" : "text-moss"}`}>
+        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+      </svg>
+    </span>
+  );
+}
+
+function Cross() {
+  return (
+    <span className="inline-flex justify-center">
+      <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-charcoal/20">
+        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+      </svg>
+    </span>
+  );
+}
+
+function Partial() {
+  return (
+    <span className="inline-flex justify-center">
+      <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-charcoal/30">
+        <path fillRule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clipRule="evenodd" />
+      </svg>
+    </span>
+  );
+}
 
 export default function PricingPage() {
   return (
@@ -46,36 +83,60 @@ export default function PricingPage() {
 
         {/* Hero */}
         <section className="bg-forest py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">Pricing</p>
-              <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl text-ivory leading-tight mb-4 sm:mb-6">
-                One plan. Everything included.
-              </h1>
-              <p className="text-base sm:text-lg text-sage/80 leading-relaxed">
-                No tiers, no feature gates, no per-user charges. Just KORA, for your home.
-              </p>
-            </div>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-4 sm:mb-6">Pricing</p>
+            <h1 className="font-[family-name:var(--font-sora)] font-semibold text-3xl sm:text-5xl text-ivory leading-tight mb-4 sm:mb-6">
+              Simple pricing. No surprises.
+            </h1>
+            <p className="text-base sm:text-lg text-sage/80 leading-relaxed max-w-xl mx-auto">
+              One price per home. No per-user charges, no feature gates, no hidden fees.
+            </p>
           </div>
         </section>
 
-        {/* Plans */}
-        <section className="py-16 sm:py-24 bg-ivory">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
+        {/* Plan */}
+        <section className="bg-forest py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-              {/* KORA plan */}
-              <div className="flex flex-col rounded-2xl bg-forest text-ivory p-7 sm:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+              {/* Left: price + scale */}
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">KORA</p>
-                <div className="mb-1">
-                  <span className="font-[family-name:var(--font-sora)] font-semibold text-5xl text-ivory">£149</span>
-                  <span className="text-sage text-sm ml-2">/month</span>
+                <div className="flex items-end gap-2 mb-3">
+                  <span className="font-[family-name:var(--font-sora)] font-semibold text-8xl text-ivory leading-none">£125</span>
+                  <span className="text-sage text-base pb-3">/month</span>
                 </div>
-                <p className="text-sage/80 text-sm leading-relaxed mt-3 mb-8">
-                  Everything your team needs to record, understand and improve care.
+                <p className="text-sage/80 text-sm mb-10">
+                  First home · then <span className="text-ivory font-medium">+£25/month</span> per additional home
                 </p>
-                <ul className="flex flex-col gap-3 mb-10 flex-1">
-                  {KORA_FEATURES.map((f) => (
+
+                {/* Scale table */}
+                <div className="rounded-xl bg-white/10 divide-y divide-white/10 mb-10">
+                  {SCALE_EXAMPLES.map(({ label, price }) => (
+                    <div key={label} className="flex items-center justify-between px-5 py-3.5">
+                      <span className="text-sm text-sage/80">{label}</span>
+                      <span className="font-[family-name:var(--font-sora)] font-semibold text-ivory">£{price}/mo</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link
+                  href="/contact"
+                  className="inline-flex rounded-full bg-ivory px-8 py-4 text-sm font-semibold text-forest hover:bg-sage transition-colors"
+                >
+                  Start your free trial
+                </Link>
+                <p className="text-xs text-sage/50 mt-4">
+                  7-day free trial · No card required · Cancel anytime
+                </p>
+              </div>
+
+              {/* Right: features */}
+              <div className="lg:pt-14">
+                <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-6">Everything included</p>
+                <ul className="flex flex-col gap-4">
+                  {FEATURES.map((f) => (
                     <li key={f} className="flex items-center gap-3 text-sm text-ivory/85">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0 text-sage">
                         <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
@@ -84,53 +145,142 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href="/contact"
-                  className="inline-flex justify-center rounded-full bg-ivory px-6 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
-                >
-                  Start free trial
-                </Link>
-                <p className="text-xs text-sage/60 text-center mt-4">
-                  No setup fee. No per-user charges. Cancel anytime.
-                </p>
-              </div>
-
-              {/* Enterprise */}
-              <div className="flex flex-col rounded-2xl bg-white border border-sage/30 p-7 sm:p-10">
-                <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-6">Enterprise</p>
-                <div className="mb-1">
-                  <span className="font-[family-name:var(--font-sora)] font-semibold text-5xl text-forest">Let&apos;s talk</span>
-                </div>
-                <p className="text-charcoal/60 text-sm leading-relaxed mt-3 mb-8">
-                  For larger providers requiring multiple-team oversight, SSO, integrations, migration support or contractual service levels.
-                </p>
-                <ul className="flex flex-col gap-3 mb-10 flex-1">
-                  {[
-                    "Everything in KORA",
-                    "Multi-home & multi-team oversight",
-                    "Single sign-on (SSO)",
-                    "System integrations",
-                    "Data migration support",
-                    "Contractual service levels",
-                    "Dedicated account manager",
-                  ].map((f) => (
-                    <li key={f} className="flex items-center gap-3 text-sm text-charcoal/70">
-                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0 text-moss">
-                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/contact"
-                  className="inline-flex justify-center rounded-full bg-forest px-6 py-3.5 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
-                >
-                  Get in touch
-                </Link>
               </div>
 
             </div>
+          </div>
+        </section>
+
+        {/* Comparison */}
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-14">
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3">How KORA compares</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-forest leading-snug">
+                Purpose-built for residential children&apos;s care. Not adapted from something else.
+              </h2>
+            </div>
+
+            <div className="overflow-x-auto -mx-4 sm:mx-0">
+              <table className="w-full min-w-[640px] border-collapse text-sm">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-4 sm:px-6 text-xs font-semibold uppercase tracking-widest text-charcoal/40 w-2/5" />
+                    <th className="py-3 px-4 sm:px-6 text-center">
+                      <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-sora)] font-semibold text-forest text-base">
+                        <span className="w-2 h-2 rounded-full bg-moss inline-block" />
+                        KORA
+                      </span>
+                    </th>
+                    <th className="py-3 px-4 sm:px-6 text-center font-semibold text-charcoal/50 text-sm">Clearcare</th>
+                    <th className="py-3 px-4 sm:px-6 text-center font-semibold text-charcoal/50 text-sm">Lief</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sage/20">
+                  {[
+                    {
+                      label: "Starting price",
+                      kora: "£125/month",
+                      clearcare: "Per-carer pricing",
+                      lief: "Contact for pricing",
+                      koraNote: true,
+                    },
+                    {
+                      label: "Per-user charges",
+                      kora: "None",
+                      clearcare: "Yes",
+                      lief: "Yes",
+                      koraGood: true,
+                    },
+                    {
+                      label: "Setup fee",
+                      kora: "None",
+                      clearcare: "Yes",
+                      lief: "Yes",
+                      koraGood: true,
+                    },
+                    {
+                      label: "Built for residential children's care",
+                      kora: true,
+                      clearcare: false,
+                      lief: "partial",
+                    },
+                    {
+                      label: "Young person outcome tracking",
+                      kora: true,
+                      clearcare: false,
+                      lief: "partial",
+                    },
+                    {
+                      label: "Automated insights & pattern detection",
+                      kora: true,
+                      clearcare: false,
+                      lief: false,
+                    },
+                    {
+                      label: "Statutory reporting (LAC, Ofsted)",
+                      kora: true,
+                      clearcare: false,
+                      lief: "partial",
+                    },
+                    {
+                      label: "Data isolation per home",
+                      kora: true,
+                      clearcare: false,
+                      lief: "partial",
+                    },
+                    {
+                      label: "UK data residency",
+                      kora: true,
+                      clearcare: false,
+                      lief: "partial",
+                    },
+                    {
+                      label: "Offline capable",
+                      kora: true,
+                      clearcare: false,
+                      lief: false,
+                    },
+                    {
+                      label: "Free trial",
+                      kora: "7 days",
+                      clearcare: "—",
+                      lief: "—",
+                      koraNote: true,
+                    },
+                  ].map(({ label, kora, clearcare, lief, koraGood, koraNote }) => (
+                    <tr key={label} className="hover:bg-sage/5 transition-colors">
+                      <td className="py-3.5 px-4 sm:px-6 text-charcoal/70">{label}</td>
+                      <td className="py-3.5 px-4 sm:px-6 text-center">
+                        {kora === true ? (
+                          <Check />
+                        ) : kora === false ? (
+                          <Cross />
+                        ) : (
+                          <span className={`font-medium text-sm ${koraGood ? "text-moss" : koraNote ? "text-forest font-semibold" : "text-charcoal/70"}`}>
+                            {kora}
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 text-center">
+                        {clearcare === true ? <Check muted /> : clearcare === false ? <Cross /> : (
+                          <span className="text-charcoal/40 text-sm">{clearcare}</span>
+                        )}
+                      </td>
+                      <td className="py-3.5 px-4 sm:px-6 text-center">
+                        {lief === true ? <Check muted /> : lief === false ? <Cross /> : lief === "partial" ? <Partial /> : (
+                          <span className="text-charcoal/40 text-sm">{lief}</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-charcoal/30 mt-6">
+              Based on publicly available information. Verify details with each provider before purchasing.
+            </p>
           </div>
         </section>
 
@@ -148,6 +298,24 @@ export default function PricingPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 sm:py-20 bg-forest">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-ivory mb-4">
+              Any questions about pricing?
+            </h2>
+            <p className="text-sage/80 text-base mb-8">
+              Get in touch and we&apos;ll talk you through it — no hard sell, no obligation.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex rounded-full bg-ivory px-8 py-4 text-sm font-semibold text-forest hover:bg-sage transition-colors"
+            >
+              Talk to us
+            </Link>
           </div>
         </section>
 

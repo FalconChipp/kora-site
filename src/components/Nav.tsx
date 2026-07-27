@@ -49,7 +49,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href="#"
+            href="http://79.99.41.10:3000"
             className="hidden lg:inline text-sm font-medium text-forest hover:text-moss transition-colors"
           >
             Sign in
@@ -109,7 +109,7 @@ export default function Nav() {
           </nav>
           <div className="mt-4 pt-4 border-t border-sage/30 flex flex-col gap-3">
             <Link
-              href="#"
+              href="http://79.99.41.10:3000"
               onClick={() => setOpen(false)}
               className="px-3 py-2.5 text-base font-medium text-forest hover:bg-sage/20 rounded-lg transition-colors"
             >
