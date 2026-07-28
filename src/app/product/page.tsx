@@ -2,42 +2,110 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
-const HOW_IT_WORKS = [
+const PROBLEMS = [
+  {
+    title: "Recording that goes nowhere",
+    body: "Staff complete shift logs, incident forms, and daily notes — but the information sits in a folder. Nobody has time to analyse it, so patterns get missed until it's too late.",
+  },
+  {
+    title: "Reports take hours",
+    body: "LAC reviews, Ofsted visits, and funding applications all need evidence of progress. Pulling that evidence together manually takes hours every time.",
+  },
+  {
+    title: "Compliance is constant pressure",
+    body: "GDPR, data isolation between homes, audit trails, access controls — meeting these requirements while still running a home is a significant administrative burden.",
+  },
+];
+
+const STEPS = [
   {
     step: "01",
     title: "Staff record daily",
-    body: "Care workers log daily notes, incidents, moods, sleep, and activities in KORA — the same information they record now, but in one place.",
+    body: "Care workers log shift notes, incidents, moods, sleep, medication, and activities in KORA. The same information they record today — but structured, timestamped, and attributed.",
   },
   {
     step: "02",
     title: "KORA finds patterns",
-    body: "The platform automatically correlates records across time: does behaviour worsen after poor sleep? Does mood improve after family contact? KORA surfaces these connections.",
+    body: "The platform automatically correlates records across time. Does behaviour worsen after poor sleep? Does mood improve after family contact? KORA surfaces these connections without anyone building a spreadsheet.",
   },
   {
     step: "03",
     title: "Teams act on evidence",
-    body: "Managers and keyworkers see clear insight dashboards. Reviews and reports are generated in one click, evidencing outcomes for inspections and funding bodies.",
+    body: "Managers and keyworkers see clear dashboards. Reviews and reports are generated in one click — with outcome evidence ready for inspections, reviews, and funding bodies.",
   },
 ];
 
-const DIFFERENTIATORS = [
+const MODULES = [
   {
-    title: "Not just a recording tool",
-    body: "Most platforms stop at data entry. KORA turns what's recorded into structured insight — automatically, without anyone needing to build a spreadsheet.",
+    label: "Young people",
+    title: "A complete picture of every young person",
+    body: "Each young person has a living profile: goals, achievements, family contact, education, health, and wellbeing — updated continuously as staff record. The timeline view puts every record in order, so nothing gets missed between shifts.",
+    dark: false,
+    items: ["Living profiles", "Goal tracking & evidence", "Timeline view", "Family contact log"],
   },
   {
-    title: "Built for the sector",
-    body: "KORA is designed around how residential care actually works: keyworkers, shift handovers, young person plans, and statutory reporting — not adapted from a generic CRM.",
+    label: "Daily recording",
+    title: "Fast enough that staff will actually use it",
+    body: "Shift-based logs with structured fields for mood, behaviour, sleep, appetite, and activity — completed in under two minutes. Incidents have severity grading, body maps, and follow-up tracking. Medication logs flag missed doses automatically.",
+    dark: true,
+    items: ["Daily logs", "Incident recording", "Medication tracking", "School attendance"],
   },
   {
-    title: "Privacy by design",
-    body: "Every home's data lives in its own isolated database. Nobody inside KORA can accidentally see another home's records.",
+    label: "Insight",
+    title: "Patterns your team didn't have time to find",
+    body: "KORA identifies correlations between sleep, mood, behaviour, incidents, and contact — automatically. Custom alert thresholds mean managers are notified before problems escalate. Dashboards show trends over days, weeks, and months.",
+    dark: false,
+    items: ["Automated pattern detection", "Behaviour dashboards", "Alert thresholds", "Comparative analysis"],
   },
   {
-    title: "Windows-native app",
-    body: "Staff work offline-capable from a desktop application — no browser required. Data syncs securely to the cloud when connected.",
+    label: "Reporting",
+    title: "Statutory documents in seconds, not hours",
+    body: "Generate LAC review reports, outcome summaries, and statutory documents in one click. Structured output ready for social workers, IROs, and Ofsted — with full audit trail included as standard.",
+    dark: true,
+    items: ["LAC review reports", "Ofsted-ready exports", "Funding body reports", "Full audit trail"],
   },
 ];
+
+const ROLES = [
+  {
+    role: "Care workers",
+    tagline: "Less admin. More care.",
+    points: [
+      "Complete shift logs in under two minutes",
+      "Guided incident forms — nothing gets forgotten",
+      "Medication prompts and refusal logging",
+      "Offline-capable desktop app",
+    ],
+  },
+  {
+    role: "Home managers",
+    tagline: "Oversight without the overhead.",
+    points: [
+      "Dashboard showing patterns and alerts across all young people",
+      "Instant access to any record, any time",
+      "One-click reports for reviews and inspections",
+      "Staff rota and handover management",
+    ],
+  },
+  {
+    role: "Org leaders",
+    tagline: "Multi-home clarity.",
+    points: [
+      "Organisation-wide dashboard with per-home breakdowns",
+      "Complete data isolation between homes",
+      "Manage team access and permissions centrally",
+      "Billing and subscription management in one place",
+    ],
+  },
+];
+
+function CheckIcon({ dark }: { dark: boolean }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 flex-shrink-0 mt-0.5 ${dark ? "text-sage" : "text-moss"}`}>
+      <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+    </svg>
+  );
+}
 
 export default function ProductPage() {
   return (
@@ -54,34 +122,39 @@ export default function ProductPage() {
                 Recording is just the beginning.
               </h1>
               <p className="text-base sm:text-lg text-sage/80 leading-relaxed max-w-xl mb-8 sm:mb-10">
-                KORA is the platform that turns the information your team already records into meaningful insight about the young people in your care.
+                KORA turns the information your team already records into meaningful insight about the young people in your care — automatically, in real time.
               </p>
-              <Link
-                href="/contact"
-                className="inline-flex rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
-              >
-                Request a demo
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/start"
+                  className="inline-flex rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
+                >
+                  Start free trial
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex rounded-full border border-sage/40 px-7 py-3.5 text-sm font-semibold text-ivory hover:border-sage/80 transition-colors"
+                >
+                  Request a demo
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* How it works */}
+        {/* The problem */}
         <section className="py-16 sm:py-24 bg-ivory">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-16">
-              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">How it works</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">The problem</p>
               <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug">
-                Simple for staff. Powerful for managers.
+                Care teams record more than ever. Most of it goes nowhere.
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
-              {HOW_IT_WORKS.map(({ step, title, body }) => (
-                <div key={step} className="flex flex-col gap-3 sm:gap-4">
-                  <span className="font-[family-name:var(--font-sora)] font-semibold text-5xl text-sage leading-none">
-                    {step}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-lg sm:text-xl text-forest">{title}</h3>
+              {PROBLEMS.map(({ title, body }) => (
+                <div key={title} className="flex flex-col gap-3 border-t-2 border-moss/30 pt-6">
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base sm:text-lg text-forest">{title}</h3>
                   <p className="text-sm text-charcoal/60 leading-relaxed">{body}</p>
                 </div>
               ))}
@@ -89,19 +162,22 @@ export default function ProductPage() {
           </div>
         </section>
 
-        {/* Differentiators */}
+        {/* How it works */}
         <section className="py-16 sm:py-24 bg-forest">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl mb-10 sm:mb-16">
-              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-3 sm:mb-4">Why KORA</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-3 sm:mb-4">How it works</p>
               <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-ivory leading-snug">
-                Different by design.
+                Simple for staff. Powerful for managers.
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-              {DIFFERENTIATORS.map(({ title, body }) => (
-                <div key={title} className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base sm:text-lg text-ivory mb-3">{title}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12">
+              {STEPS.map(({ step, title, body }) => (
+                <div key={step} className="flex flex-col gap-4">
+                  <span className="font-[family-name:var(--font-sora)] font-semibold text-6xl text-sage/40 leading-none">
+                    {step}
+                  </span>
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-lg sm:text-xl text-ivory">{title}</h3>
                   <p className="text-sm text-sage/70 leading-relaxed">{body}</p>
                 </div>
               ))}
@@ -109,21 +185,122 @@ export default function ProductPage() {
           </div>
         </section>
 
+        {/* Modules */}
+        {MODULES.map(({ label, title, body, dark, items }) => (
+          <section key={label} className={`py-16 sm:py-24 ${dark ? "bg-forest" : "bg-ivory"}`}>
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                <div>
+                  <p className={`text-xs font-semibold uppercase tracking-widest mb-3 ${dark ? "text-sage" : "text-moss"}`}>
+                    {label}
+                  </p>
+                  <h2 className={`font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl leading-snug mb-4 ${dark ? "text-ivory" : "text-forest"}`}>
+                    {title}
+                  </h2>
+                  <p className={`text-sm leading-relaxed ${dark ? "text-sage/70" : "text-charcoal/60"}`}>
+                    {body}
+                  </p>
+                </div>
+                <ul className="flex flex-col gap-4">
+                  {items.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <CheckIcon dark={dark} />
+                      <span className={`text-sm font-medium ${dark ? "text-ivory/85" : "text-forest"}`}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        {/* Roles */}
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-10 sm:mb-16">
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">Who it&apos;s for</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug">
+                Built for every role in your team.
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+              {ROLES.map(({ role, tagline, points }) => (
+                <div key={role} className="rounded-2xl border border-sage/30 bg-white p-6 sm:p-8 flex flex-col gap-5">
+                  <div>
+                    <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base text-forest mb-1">{role}</h3>
+                    <p className="text-xs text-moss font-semibold uppercase tracking-wide">{tagline}</p>
+                  </div>
+                  <ul className="flex flex-col gap-3">
+                    {points.map((p) => (
+                      <li key={p} className="flex items-start gap-2.5 text-sm text-charcoal/70 leading-snug">
+                        <CheckIcon dark={false} />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Security */}
+        <section className="py-16 sm:py-24 bg-forest">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-sage mb-3 sm:mb-4">Security & compliance</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-ivory leading-snug mb-4 sm:mb-6">
+                GDPR-ready from day one.
+              </h2>
+              <p className="text-sm sm:text-base text-sage/70 leading-relaxed">
+                KORA is built for regulated services. Each home&apos;s data lives in its own isolated database — staff at one home cannot see another home&apos;s records, even within the same organisation. All data is stored in the UK.
+              </p>
+            </div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                "UK data residency",
+                "Per-home database isolation",
+                "Role-based access controls",
+                "Full audit trail on every record",
+                "Subject access request tooling",
+                "Data retention policy support",
+                "Right-to-erasure support",
+                "Automatic cloud backups",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm text-ivory/80">
+                  <CheckIcon dark={true} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-16 sm:py-24 bg-ivory text-center">
           <div className="mx-auto max-w-2xl px-4 sm:px-6">
-            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-forest mb-4 sm:mb-6">
-              See KORA in action.
+            <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">Get started</p>
+            <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl lg:text-4xl text-forest leading-snug mb-4 sm:mb-6">
+              See KORA in your setting.
             </h2>
-            <p className="text-sm sm:text-base text-charcoal/60 mb-8 sm:mb-10">
-              Book a demo and we&apos;ll walk you through the platform with your specific setting in mind.
+            <p className="text-sm sm:text-base text-charcoal/60 leading-relaxed mb-8 sm:mb-10">
+              Start a free 7-day trial, or book a demo and we&apos;ll walk you through the platform with your specific setting in mind.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
-            >
-              Book a demo
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/start"
+                className="inline-flex rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
+              >
+                Start free trial
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex rounded-full border border-forest/30 px-8 py-4 text-sm font-semibold text-forest hover:border-moss transition-colors"
+              >
+                Book a demo
+              </Link>
+            </div>
+            <p className="text-xs text-charcoal/30 mt-4">7-day free trial · No card required · Cancel anytime</p>
           </div>
         </section>
 
