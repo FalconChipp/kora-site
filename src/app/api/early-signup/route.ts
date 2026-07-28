@@ -56,9 +56,8 @@ export async function POST(req: NextRequest) {
     const code = generateCode();
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (stripe.promotionCodes.create as any)({
-        coupon: couponId,
+      await stripe.promotionCodes.create({
+        promotion: { type: "coupon", coupon: couponId },
         code,
         max_redemptions: 1,
         metadata: { email, firstName: firstName ?? "" },
