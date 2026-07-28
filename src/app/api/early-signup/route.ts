@@ -48,7 +48,8 @@ export async function POST(req: NextRequest) {
   const code = generateCode();
 
   // Create a single-use promotion code in Stripe
-  await stripe.promotionCodes.create({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await (stripe.promotionCodes.create as any)({
     coupon: couponId,
     code,
     max_redemptions: 1,
