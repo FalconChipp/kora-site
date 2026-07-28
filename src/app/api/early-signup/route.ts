@@ -38,57 +38,81 @@ async function getOrCreateCoupon(): Promise<string> {
 }
 
 export async function POST(req: NextRequest) {
-  const { email, firstName } = await req.json();
+  try {
+    const { email, firstName } = await req.json();
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.json({ error: "Valid email required" }, { status: 400 });
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Valid email required" }, { status: 400 });
+    }
+
+    let couponId: string;
+    try {
+      couponId = await getOrCreateCoupon();
+    } catch (err) {
+      console.error("[early-signup] coupon error:", err);
+      return NextResponse.json({ error: "stripe_coupon", detail: String(err) }, { status: 500 });
+    }
+
+    const code = generateCode();
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (stripe.promotionCodes.create as any)({
+        coupon: couponId,
+        code,
+        max_redemptions: 1,
+        metadata: { email, firstName: firstName ?? "" },
+      });
+    } catch (err) {
+      console.error("[early-signup] promo code error:", err);
+      return NextResponse.json({ error: "stripe_promo", detail: String(err) }, { status: 500 });
+    }
+
+    const name = firstName ? `, ${firstName}` : "";
+
+    try {
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM,
+        to: email,
+        subject: "Your early access discount for KORA",
+        text: [
+          `Hi${name},`,
+          "",
+          "Thanks for signing up for early access to KORA.",
+          "",
+          "As one of our first users, you get 25% off for your first 3 months.",
+          "",
+          `Your discount code: ${code}`,
+          "",
+          "Enter this code at checkout when KORA launches. It's personal to you and can only be used once.",
+          "",
+          `In the meantime, you can explore what's coming at ${PORTAL_URL}/features`,
+          "",
+          "We'll be in touch when we're ready to launch.",
+          "",
+          "The KORA team",
+        ].join("\n"),
+      });
+    } catch (err) {
+      console.error("[early-signup] user email error:", err);
+      return NextResponse.json({ error: "smtp_user", detail: String(err) }, { status: 500 });
+    }
+
+    try {
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM,
+        to: process.env.CONTACT_TO,
+        subject: `New early signup: ${email}`,
+        text: `Email: ${email}\nName: ${firstName ?? "—"}\nCode: ${code}`,
+      });
+    } catch (err) {
+      console.error("[early-signup] admin email error:", err);
+      // Non-fatal — code was already created, user email sent
+    }
+
+    return NextResponse.json({ code });
+  } catch (err) {
+    console.error("[early-signup] unexpected error:", err);
+    return NextResponse.json({ error: "unexpected", detail: String(err) }, { status: 500 });
   }
-
-  const couponId = await getOrCreateCoupon();
-  const code = generateCode();
-
-  // Create a single-use promotion code in Stripe
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  await (stripe.promotionCodes.create as any)({
-    coupon: couponId,
-    code,
-    max_redemptions: 1,
-    metadata: { email, firstName: firstName ?? "" },
-  });
-
-  const name = firstName ? `, ${firstName}` : "";
-
-  // Email the code to the signup
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to: email,
-    subject: "Your early access discount for KORA",
-    text: [
-      `Hi${name},`,
-      "",
-      "Thanks for signing up for early access to KORA.",
-      "",
-      "As one of our first users, you get 25% off for your first 3 months.",
-      "",
-      `Your discount code: ${code}`,
-      "",
-      "Enter this code at checkout when KORA launches. It's personal to you and can only be used once.",
-      "",
-      `In the meantime, you can explore what's coming at ${PORTAL_URL}/features`,
-      "",
-      "We'll be in touch when we're ready to launch.",
-      "",
-      "The KORA team",
-    ].join("\n"),
-  });
-
-  // Notify admin
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to: process.env.CONTACT_TO,
-    subject: `New early signup: ${email}`,
-    text: `Email: ${email}\nName: ${firstName ?? "—"}\nCode: ${code}`,
-  });
-
-  return NextResponse.json({ code });
 }
