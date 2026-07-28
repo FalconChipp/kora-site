@@ -91,7 +91,8 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
   const couponId = await getOrCreateCoupon();
 
   // Apply 20% discount to the subscription's first real charge
-  await stripe.subscriptions.update(subscription.id, { coupon: couponId });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  await (stripe.subscriptions.update as any)(subscription.id, { coupon: couponId });
 
   // Get customer email to send the notification
   const customer = await stripe.customers.retrieve(subscription.customer as string);
