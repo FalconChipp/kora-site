@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePortalAuth } from "@/lib/portal-auth";
 import KoraLogo from "@/components/KoraLogo";
@@ -58,9 +59,14 @@ export default function PortalLoginPage() {
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="password" className="text-xs font-semibold text-charcoal/60 uppercase tracking-wide">
-                Password
-              </label>
+              <div className="flex items-center justify-between">
+                <label htmlFor="password" className="text-xs font-semibold text-charcoal/60 uppercase tracking-wide">
+                  Password
+                </label>
+                <Link href="/portal/forgot-password" className="text-xs text-moss hover:text-forest transition-colors">
+                  Forgot password?
+                </Link>
+              </div>
               <input
                 id="password"
                 type="password"
