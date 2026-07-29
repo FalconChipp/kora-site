@@ -78,8 +78,9 @@ async function handleSubscriptionCancelled(subscription: Stripe.Subscription) {
   if (customer.deleted || !customer.email) return;
 
   const firstName = (customer.metadata?.firstName ?? customer.name?.split(" ")[0]) ?? "there";
-  const accessUntil = subscription.current_period_end
-    ? new Date(subscription.current_period_end * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+  const periodEnd = subscription.items?.data?.[0]?.current_period_end;
+  const accessUntil = periodEnd
+    ? new Date(periodEnd * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
     : "the end of your billing period";
 
   await fetch(`${API}/auth/send-subscription-cancelled`, {
