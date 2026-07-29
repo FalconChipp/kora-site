@@ -58,7 +58,7 @@ export default function Home() {
               <p className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-ivory tracking-widest">
                 {code}
               </p>
-              <p className="text-sage/60 text-xs mt-2">25% off your first 3 months · Single use · Valid at launch</p>
+              <p className="text-sage/60 text-xs mt-2">25% off your first 3 months — exclusively for early supporters · Single use · Valid at launch</p>
             </div>
             <p className="text-sage/60 text-xs">
               We&apos;ll email you when KORA is ready to launch. In the meantime,{" "}
@@ -77,7 +77,7 @@ export default function Home() {
                 The outcomes platform built for young person care.
               </h1>
               <p className="text-base sm:text-lg text-sage/70 leading-relaxed max-w-xl mx-auto">
-                KORA is launching soon. Sign up now for early access and lock in 25% off your first 3 months — exclusively for early supporters.
+                KORA is launching soon. Sign up now and lock in 25% off your first 3 months — exclusively for early supporters.
               </p>
             </div>
 
@@ -117,7 +117,7 @@ export default function Home() {
                 disabled={submitting}
                 className="w-full rounded-full bg-ivory py-4 text-sm font-semibold text-forest hover:bg-sage transition-colors disabled:opacity-60 mt-1"
               >
-                {submitting ? "Reserving your spot…" : "Get early access + 25% off"}
+                {submitting ? "Reserving your spot…" : "Get early access — 25% off your first 3 months"}
               </button>
 
               <p className="text-center text-xs text-sage/40">
