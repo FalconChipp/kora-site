@@ -1,19 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import nodemailer from "nodemailer";
 import crypto from "crypto";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const API = process.env.NEXT_PUBLIC_API_URL!;
 const PORTAL_URL = "https://koraplatform.co.uk/portal";
 const COUPON_ID = "KORA_TRIAL_20";
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,
-  auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-});
 
 function generatePassword(): string {
   return crypto.randomBytes(12).toString("base64url").slice(0, 16);
@@ -40,51 +32,22 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
 
   const tempPassword = generatePassword();
 
-  const registerRes = await fetch(`${API}/auth/register`, {
+  const res = await fetch(`${API}/auth/checkout-complete`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password: tempPassword, firstName, lastName }),
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      orgName,
+      tempPassword,
+      secret: process.env.CHECKOUT_SECRET,
+    }),
   });
 
-  if (!registerRes.ok) {
-    console.error("Register failed:", await registerRes.json().catch(() => ({})));
-    return;
+  if (!res.ok) {
+    console.error("checkout-complete failed:", await res.json().catch(() => ({})));
   }
-
-  const loginRes = await fetch(`${API}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password: tempPassword }),
-  });
-  if (!loginRes.ok) { console.error("Login after register failed"); return; }
-  const { accessToken } = await loginRes.json();
-
-  await fetch(`${API}/organisations`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
-    body: JSON.stringify({ name: orgName }),
-  });
-
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to: email,
-    subject: "Welcome to KORA — your account is ready",
-    text: [
-      `Hi ${firstName},`,
-      "",
-      `Your KORA account has been created for ${orgName}. Your 7-day free trial starts now.`,
-      "",
-      `Sign in at: ${PORTAL_URL}`,
-      `Email: ${email}`,
-      `Temporary password: ${tempPassword}`,
-      "",
-      "Please change your password after signing in.",
-      "",
-      "If you have any questions, reply to this email or contact hello@sixbyfive.com.",
-      "",
-      "The KORA team",
-    ].join("\n"),
-  });
 }
 
 async function handleTrialWillEnd(subscription: Stripe.Subscription) {
@@ -131,12 +94,16 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
         "The KORA team",
       ].join("\n");
 
-  await transporter.sendMail({
-    from: process.env.SMTP_FROM,
-    to: customer.email,
-    subject: "Your KORA trial ends in 3 days",
-    text: emailText,
-  });
+  await fetch(`${API}/early-signup/send-email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      to: customer.email,
+      subject: "Your KORA trial ends in 3 days",
+      text: emailText,
+      secret: process.env.CHECKOUT_SECRET,
+    }),
+  }).catch((err) => console.error("Trial email failed:", err));
 }
 
 export async function POST(req: NextRequest) {

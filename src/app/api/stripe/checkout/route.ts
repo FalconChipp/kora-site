@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
   }
 
   // New signup flow — create account on webhook after payment
-  const { firstName, lastName, email, orgName } = body;
+  const { firstName, lastName, email, orgName, trial } = body;
   if (!firstName || !lastName || !email || !orgName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     allow_promotion_codes: true,
     metadata: { firstName, lastName, email, orgName },
     subscription_data: {
-      trial_period_days: 7,
+      ...(trial ? { trial_period_days: 7 } : {}),
       metadata: { firstName, lastName, email, orgName },
     },
     success_url: `${origin}/start/success`,

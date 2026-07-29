@@ -5,6 +5,7 @@ import Link from "next/link";
 import KoraLogo from "@/components/KoraLogo";
 
 export default function StartPage() {
+  const [trial, setTrial] = useState(true);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function StartPage() {
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, lastName, email, orgName }),
+        body: JSON.stringify({ firstName, lastName, email, orgName, trial }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong");
@@ -39,11 +40,40 @@ export default function StartPage() {
 
       <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-sm">
         <div className="mb-6">
-          <h1 className="font-[family-name:var(--font-sora)] font-semibold text-xl text-forest mb-1">
-            Start your free trial
+          <h1 className="font-[family-name:var(--font-sora)] font-semibold text-xl text-forest mb-4">
+            Get started with KORA
           </h1>
-          <p className="text-sm text-charcoal/50">
-            7 days free · No card charged until trial ends · Cancel anytime
+
+          {/* Plan toggle */}
+          <div className="grid grid-cols-2 gap-2 p-1 bg-sage/10 rounded-xl">
+            <button
+              type="button"
+              onClick={() => setTrial(true)}
+              className={`rounded-lg py-2.5 text-sm font-semibold transition-all ${
+                trial
+                  ? "bg-white text-forest shadow-sm"
+                  : "text-charcoal/50 hover:text-charcoal/70"
+              }`}
+            >
+              7-day free trial
+            </button>
+            <button
+              type="button"
+              onClick={() => setTrial(false)}
+              className={`rounded-lg py-2.5 text-sm font-semibold transition-all ${
+                !trial
+                  ? "bg-white text-forest shadow-sm"
+                  : "text-charcoal/50 hover:text-charcoal/70"
+              }`}
+            >
+              Subscribe now
+            </button>
+          </div>
+
+          <p className="text-xs text-charcoal/45 mt-2.5 text-center">
+            {trial
+              ? "No card charged for 7 days · Cancel anytime"
+              : "£125/month · Billed immediately · Cancel anytime"}
           </p>
         </div>
 
@@ -116,14 +146,17 @@ export default function StartPage() {
             disabled={submitting}
             className="rounded-full bg-forest px-6 py-3.5 text-sm font-semibold text-ivory hover:bg-moss transition-colors disabled:opacity-60 disabled:cursor-not-allowed mt-1"
           >
-            {submitting ? "Redirecting to payment…" : "Continue to payment →"}
+            {submitting
+              ? "Redirecting to payment…"
+              : trial
+              ? "Start free trial →"
+              : "Subscribe now →"}
           </button>
         </form>
 
         <p className="text-xs text-charcoal/35 text-center mt-5 leading-relaxed">
-          By continuing you agree to our terms. Your card won&apos;t be charged during the 7-day trial.
-          Already have an account?{" "}
-          <Link href="/" className="text-moss underline underline-offset-2">Sign in</Link>
+          By continuing you agree to our terms. Already have an account?{" "}
+          <Link href="/portal/login" className="text-moss underline underline-offset-2">Sign in</Link>
         </p>
       </div>
     </div>
