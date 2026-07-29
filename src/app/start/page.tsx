@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import KoraLogo from "@/components/KoraLogo";
 
-export default function StartPage() {
+function StartForm() {
   const params = useSearchParams();
   const [trial, setTrial] = useState(params.get("plan") !== "now");
   const [firstName, setFirstName] = useState("");
@@ -162,5 +162,13 @@ export default function StartPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function StartPage() {
+  return (
+    <Suspense>
+      <StartForm />
+    </Suspense>
   );
 }
