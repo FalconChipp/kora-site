@@ -88,34 +88,54 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
 }
 
 async function handleTrialWillEnd(subscription: Stripe.Subscription) {
-  const couponId = await getOrCreateCoupon();
+  // If the subscription already has a discount (e.g. early access code), don't apply
+  // the trial discount on top — let the existing deal stand and just send a reminder.
+  const hasExistingDiscount = subscription.discounts && subscription.discounts.length > 0;
 
-  await stripe.subscriptions.update(subscription.id, { discounts: [{ coupon: couponId }] });
+  if (!hasExistingDiscount) {
+    const couponId = await getOrCreateCoupon();
+    await stripe.subscriptions.update(subscription.id, { discounts: [{ coupon: couponId }] });
+  }
 
-  // Get customer email to send the notification
   const customer = await stripe.customers.retrieve(subscription.customer as string);
   if (customer.deleted || !customer.email) return;
 
   const firstName = (customer.metadata?.firstName ?? customer.name?.split(" ")[0]) ?? "there";
 
+  const emailText = hasExistingDiscount
+    ? [
+        `Hi ${firstName},`,
+        "",
+        "Your 7-day KORA free trial ends in 3 days.",
+        "",
+        "Your early access discount is already applied to your account — no action needed.",
+        "",
+        `Sign in to your portal: ${PORTAL_URL}`,
+        "",
+        "If you have any questions before your trial ends, just reply to this email.",
+        "",
+        "The KORA team",
+      ].join("\n")
+    : [
+        `Hi ${firstName},`,
+        "",
+        "Your 7-day KORA free trial ends in 3 days.",
+        "",
+        "As a thank you for trying KORA, we've automatically applied 20% off your first month.",
+        "Your first payment will be £100 instead of £125 — no code needed, it's already on your account.",
+        "",
+        `Sign in to your portal: ${PORTAL_URL}`,
+        "",
+        "If you have any questions before your trial ends, just reply to this email.",
+        "",
+        "The KORA team",
+      ].join("\n");
+
   await transporter.sendMail({
     from: process.env.SMTP_FROM,
     to: customer.email,
-    subject: "Your KORA trial ends in 3 days — here's 20% off",
-    text: [
-      `Hi ${firstName},`,
-      "",
-      "Your 7-day KORA free trial ends in 3 days.",
-      "",
-      "As a thank you for trying KORA, we've automatically applied 20% off your first month.",
-      "Your first payment will be £100 instead of £125 — no code needed, it's already on your account.",
-      "",
-      `Sign in to your portal: ${PORTAL_URL}`,
-      "",
-      "If you have any questions before your trial ends, just reply to this email.",
-      "",
-      "The KORA team",
-    ].join("\n"),
+    subject: "Your KORA trial ends in 3 days",
+    text: emailText,
   });
 }
 
