@@ -126,7 +126,7 @@ export default function ProductPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/start"
+                  href="/start?plan=trial"
                   className="inline-flex rounded-full bg-ivory px-7 py-3.5 text-sm font-semibold text-forest hover:bg-sage transition-colors"
                 >
                   Start free trial
@@ -288,7 +288,7 @@ export default function ProductPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/start"
+                href="/start?plan=trial"
                 className="inline-flex rounded-full bg-forest px-8 py-4 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
               >
                 Start free trial

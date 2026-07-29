@@ -125,10 +125,10 @@ export default function PricingPage() {
                   href="/start"
                   className="inline-flex rounded-full bg-ivory px-8 py-4 text-sm font-semibold text-forest hover:bg-sage transition-colors"
                 >
-                  Start your free trial
+                  Get started
                 </Link>
                 <p className="text-xs text-sage/50 mt-4">
-                  7-day free trial · No card required · Cancel anytime
+                  7-day free trial · Cancel anytime
                 </p>
               </div>
 

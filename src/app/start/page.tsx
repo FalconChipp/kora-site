@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import KoraLogo from "@/components/KoraLogo";
 
 export default function StartPage() {
-  const [trial, setTrial] = useState(true);
+  const params = useSearchParams();
+  const [trial, setTrial] = useState(params.get("plan") !== "now");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

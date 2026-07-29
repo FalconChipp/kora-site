@@ -94,10 +94,10 @@ export default function Nav() {
               Sign in
             </button>
             <Link
-              href="/contact"
+              href="/start"
               className="hidden sm:inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
             >
-              Request demo
+              Get started
             </Link>
 
             {/* Hamburger */}
@@ -142,11 +142,11 @@ export default function Nav() {
                 Sign in
               </button>
               <Link
-                href="/contact"
+                href="/start"
                 onClick={() => setOpen(false)}
                 className="inline-flex justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
               >
-                Request demo
+                Get started
               </Link>
             </div>
           </div>

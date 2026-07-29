@@ -141,7 +141,7 @@ export default function FeaturesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/start"
+                href="/start?plan=trial"
                 className="inline-flex rounded-full bg-ivory px-8 py-4 text-sm font-semibold text-forest hover:bg-sage transition-colors"
               >
                 Start free trial

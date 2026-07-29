@@ -34,6 +34,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
+  const API = process.env.NEXT_PUBLIC_API_URL!;
+  const eligibility = await fetch(
+    `${API}/auth/check-eligibility?email=${encodeURIComponent(email)}&orgName=${encodeURIComponent(orgName)}`
+  ).then((r) => r.json()).catch(() => ({ emailTaken: false, orgTaken: false }));
+
+  if (eligibility.emailTaken) {
+    return NextResponse.json(
+      { error: "An account with this email already exists. Please sign in." },
+      { status: 409 }
+    );
+  }
+  if (eligibility.orgTaken) {
+    return NextResponse.json(
+      { error: "An organisation with this name is already registered. Please contact us if you need help." },
+      { status: 409 }
+    );
+  }
+
   const customer = await stripe.customers.create({
     email,
     name: `${firstName} ${lastName}`,
