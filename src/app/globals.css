@@ -36,3 +36,50 @@ body {
 main {
   animation: page-in 0.3s ease-out both;
 }
+
+/* Legal pages prose */
+.prose-kora {
+  color: #1A1F1A;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+.prose-kora h2 {
+  font-family: var(--font-sora);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #0F2B1F;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.prose-kora h3 {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #0F2B1F;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-kora p {
+  margin-bottom: 1rem;
+  color: rgba(26,31,26,0.65);
+}
+.prose-kora ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: rgba(26,31,26,0.65);
+}
+.prose-kora li {
+  margin-bottom: 0.375rem;
+}
+.prose-kora a {
+  color: #4E7A3C;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-kora a:hover {
+  color: #0F2B1F;
+}
+.prose-kora strong {
+  font-weight: 600;
+  color: #1A1F1A;
+}
