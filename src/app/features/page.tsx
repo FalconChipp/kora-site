@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Features",
+  description:
+    "Explore every feature in KORA: young person profiles, daily recording, incident management, medication tracking, automated insights, and one-click statutory reporting.",
+  alternates: { canonical: "https://koraplatform.co.uk/features" },
+  openGraph: { url: "https://koraplatform.co.uk/features" },
+};
 
 const FEATURE_GROUPS = [
   {

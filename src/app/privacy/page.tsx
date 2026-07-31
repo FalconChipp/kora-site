@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Privacy Policy — KORA",
-  description: "How KORA collects, uses, and protects your data.",
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "How KORA collects, uses, and protects your data. GDPR-compliant, UK data residency, full data isolation between homes.",
+  alternates: { canonical: "https://koraplatform.co.uk/privacy" },
+  openGraph: { url: "https://koraplatform.co.uk/privacy" },
+  robots: { index: true, follow: false },
 };
 
 const LAST_UPDATED = "30 July 2026";

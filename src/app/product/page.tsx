@@ -1,6 +1,53 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "Learn how KORA turns the information your team already records into meaningful insight — automatically identifying patterns in mood, behaviour, sleep, and incidents.",
+  alternates: { canonical: "https://koraplatform.co.uk/product" },
+  openGraph: {
+    url: "https://koraplatform.co.uk/product",
+    description:
+      "KORA turns daily care records into real-time insight. Daily logs, incident recording, automated pattern detection, and one-click statutory reporting.",
+  },
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "KORA",
+  applicationCategory: "BusinessApplication",
+  applicationSubCategory: "Care Management Software",
+  operatingSystem: "Windows, macOS",
+  offers: {
+    "@type": "Offer",
+    price: "125",
+    priceCurrency: "GBP",
+    description: "Per home per month. First home £125, additional homes £25/month each.",
+  },
+  description:
+    "Outcomes and insights platform for residential children's care. Staff record daily logs, incidents, and observations; KORA automatically surfaces patterns and generates statutory reports.",
+  featureList: [
+    "Young person living profiles",
+    "Daily shift logs",
+    "Incident recording with body maps",
+    "Medication tracking",
+    "Automated pattern detection",
+    "LAC review report generation",
+    "Ofsted-ready exports",
+    "Role-based access controls",
+    "Per-home data isolation",
+    "UK data residency",
+  ],
+  provider: {
+    "@type": "Organization",
+    name: "SixByFive",
+    url: "https://sixbyfive.com",
+  },
+};
 
 const PROBLEMS = [
   {
@@ -110,6 +157,10 @@ function CheckIcon({ dark }: { dark: boolean }) {
 export default function ProductPage() {
   return (
     <div className="flex flex-col min-h-full bg-ivory font-[family-name:var(--font-inter)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
       <Nav />
       <main className="flex flex-col flex-1">
 

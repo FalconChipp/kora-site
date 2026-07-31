@@ -2,8 +2,11 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Updates — KORA",
-  description: "Release notes and platform updates for KORA.",
+  title: "What's New",
+  description:
+    "KORA release notes and changelog. New features, improvements, and fixes for the desktop app and platform.",
+  alternates: { canonical: "https://koraplatform.co.uk/updates" },
+  openGraph: { url: "https://koraplatform.co.uk/updates" },
 };
 
 type Release = {

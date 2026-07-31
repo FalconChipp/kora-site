@@ -5,8 +5,11 @@ import Link from "next/link";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Download KORA",
-  description: "Download the latest KORA desktop app for Windows and macOS.",
+  title: "Download",
+  description:
+    "Download the latest KORA desktop app for Windows and macOS. Automatic updates keep your app current.",
+  alternates: { canonical: "https://koraplatform.co.uk/download" },
+  openGraph: { url: "https://koraplatform.co.uk/download" },
 };
 
 const UPDATES_BASE = "https://api.koraplatform.co.uk/updates";

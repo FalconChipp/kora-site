@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Pricing",
+  description:
+    "KORA costs £125/month for your first home, then £25/month per additional home. No per-user charges, no setup fees, 7-day free trial included.",
+  alternates: { canonical: "https://koraplatform.co.uk/pricing" },
+  openGraph: { url: "https://koraplatform.co.uk/pricing" },
+};
 
 const FEATURES = [
   "Unlimited staff accounts",
@@ -75,9 +84,23 @@ function Partial() {
   );
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 export default function PricingPage() {
   return (
     <div className="flex flex-col min-h-full bg-ivory font-[family-name:var(--font-inter)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Nav />
       <main className="flex flex-col flex-1">
 

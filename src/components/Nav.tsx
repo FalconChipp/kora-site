@@ -88,7 +88,7 @@ export default function Nav() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <button
+            {/* <button
               onClick={openSignIn}
               className="hidden lg:inline text-sm font-medium text-forest hover:text-moss transition-colors"
             >
@@ -99,7 +99,7 @@ export default function Nav() {
               className="hidden sm:inline-flex items-center rounded-full bg-forest px-4 py-2 text-sm font-semibold text-ivory hover:bg-moss transition-colors"
             >
               Get started
-            </Link>
+            </Link> */}
 
             {/* Hamburger */}
             <button
@@ -135,7 +135,7 @@ export default function Nav() {
                 );
               })}
             </nav>
-            <div className="mt-4 pt-4 border-t border-sage/30 flex flex-col gap-3">
+            {/* <div className="mt-4 pt-4 border-t border-sage/30 flex flex-col gap-3">
               <button
                 onClick={openSignIn}
                 className="px-3 py-2.5 text-base font-medium text-forest hover:bg-sage/20 rounded-lg transition-colors text-left"
@@ -149,7 +149,7 @@ export default function Nav() {
               >
                 Get started
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>

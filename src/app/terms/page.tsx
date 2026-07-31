@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "Terms of Service — KORA",
-  description: "The terms and conditions governing use of the KORA platform.",
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "The terms and conditions governing use of the KORA platform. Governed by the laws of England and Wales.",
+  alternates: { canonical: "https://koraplatform.co.uk/terms" },
+  openGraph: { url: "https://koraplatform.co.uk/terms" },
+  robots: { index: true, follow: false },
 };
 
 const LAST_UPDATED = "30 July 2026";

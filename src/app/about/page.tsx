@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "KORA is built by SixByFive — a small team working in close partnership with residential care practitioners to give children's homes better tools for better outcomes.",
+  alternates: { canonical: "https://koraplatform.co.uk/about" },
+  openGraph: { url: "https://koraplatform.co.uk/about" },
+};
 
 const VALUES = [
   {

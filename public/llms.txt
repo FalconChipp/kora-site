@@ -1,0 +1,76 @@
+# KORA
+
+> KORA is the outcomes and insights platform for residential children's care, fostering, and supported settings.
+
+KORA is made by SixByFive (https://sixbyfive.com) and is available at https://koraplatform.co.uk.
+
+## What KORA does
+
+KORA helps residential children's care providers:
+
+- Record daily logs, incidents, mood, behaviour, sleep, medication, and school attendance in a structured way
+- Automatically surface patterns and correlations across records (e.g. sleep → behaviour, family contact → mood)
+- Generate statutory reports including LAC reviews and Ofsted-ready exports in one click
+- Manage young person profiles with goals, achievements, family contact logs, and timeline views
+- Maintain a full audit trail on every record for compliance and inspections
+
+## Who KORA is for
+
+- Care workers in residential children's homes — faster shift recording, guided incident forms
+- Home managers — dashboards, alerts, oversight without manual analysis
+- Organisational leaders — multi-home visibility, access controls, billing management
+
+## Pricing
+
+- £125/month for the first home
+- £25/month per additional home
+- No per-user charges, no setup fees
+- 7-day free trial, no card required
+- Cancel anytime; data available for export for 30 days after cancellation
+
+## Key features
+
+- Young person living profiles (goals, achievements, education, health, family contact)
+- Shift-based daily logs with structured fields (mood, behaviour, sleep, appetite, activity)
+- Incident recording with severity grading and body maps
+- Medication tracking with missed-dose alerts
+- School attendance and engagement recording
+- Automated pattern detection across time (mood, behaviour, incidents, sleep, contact)
+- Alert thresholds for managers
+- One-click LAC review report generation
+- Ofsted-ready exports and full audit trail
+- Role-based access controls (Platform Admin, Org Admin, Home Manager, Senior Staff, Care Staff, Read Only)
+- Per-home data isolation — staff at one home cannot access another home's records
+- UK data residency
+- Offline-capable desktop app (Windows and macOS)
+- GDPR-compliant (subject access requests, right to erasure, data retention policies)
+
+## Comparison
+
+KORA is purpose-built for residential children's care. Unlike general care management tools (e.g. Clearcare, Lief), KORA includes:
+- Young person outcome tracking
+- Automated insight and pattern detection
+- Statutory reporting (LAC, Ofsted)
+- Per-home database isolation
+- UK data residency
+- Offline-capable desktop app
+
+## Contact
+
+- Website: https://koraplatform.co.uk
+- Email: hello@koraplatform.co.uk
+- Demo: https://koraplatform.co.uk/contact
+- Download: https://koraplatform.co.uk/download
+
+## Pages
+
+- https://koraplatform.co.uk — Home / early access signup
+- https://koraplatform.co.uk/product — How KORA works
+- https://koraplatform.co.uk/features — Full feature list
+- https://koraplatform.co.uk/pricing — Pricing and FAQs
+- https://koraplatform.co.uk/about — About KORA and SixByFive
+- https://koraplatform.co.uk/contact — Contact and demo requests
+- https://koraplatform.co.uk/download — Download the desktop app
+- https://koraplatform.co.uk/updates — Changelog and release notes
+- https://koraplatform.co.uk/privacy — Privacy policy
+- https://koraplatform.co.uk/terms — Terms of service
