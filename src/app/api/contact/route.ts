@@ -1,15 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.koraplatform.co.uk";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -23,29 +14,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
-  const text = [
-    `From: ${first} ${last} <${email}>`,
-    org ? `Organisation: ${org}` : null,
-    reason ? `Reason: ${reason}` : null,
-    "",
-    message || "(no message)",
-  ]
-    .filter((l) => l !== null)
-    .join("\n");
-
   try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM,
-      to: process.env.CONTACT_TO,
-      replyTo: email,
-      subject: `KORA enquiry from ${first} ${last}${org ? ` – ${org}` : ""}`,
-      text,
+    const res = await fetch(`${API_URL}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ first, last, email, org, reason, message }),
     });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || data.error) {
+      return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    console.error("Contact email failed:", err);
-    return NextResponse.json({ error: "Failed to send message", detail: msg }, { status: 500 });
+    console.error("Contact proxy failed:", msg);
+    return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
   }
 }
