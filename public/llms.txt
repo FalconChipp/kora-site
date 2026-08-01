@@ -39,6 +39,16 @@ KORA helps residential children's care providers:
 - Alert thresholds for managers
 - One-click LAC review report generation
 - Ofsted-ready exports and full audit trail
+- Progress reports — per-resident reports with mood trend charts, incident breakdowns, education attendance, and auto-calculated progress rating
+- CSV exports — download care records as flat files with date-range and resident filters
+- Full data export — download all organisation data as a single JSON file
+- Real-time staff messaging across homes with desktop notifications and unread count
+- Insights — automated pattern analysis: mood trends, incident frequency, school-day correlation, sleep/behaviour correlation, family contact mood impact
+- Rota — weekly staff rota with shift types (morning, afternoon, evening, night, waking night)
+- Tasks — home-level task management with assignees, due dates, and priority levels
+- Forms — customisable form builder and response collection for any care workflow
+- Independence tracking — skill proficiency snapshots across life domains for each resident
+- Handover — structured shift handover notes with flagging
 - Role-based access controls (Platform Admin, Org Admin, Home Manager, Senior Staff, Care Staff, Read Only)
 - Per-home data isolation — staff at one home cannot access another home's records
 - UK data residency

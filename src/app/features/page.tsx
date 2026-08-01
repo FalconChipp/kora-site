@@ -69,6 +69,23 @@ const FEATURE_GROUPS = [
   },
 ];
 
+const featuresSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "KORA Features",
+  description:
+    "Complete list of features in KORA — the outcomes and insights platform for residential children's care.",
+  url: "https://koraplatform.co.uk/features",
+  itemListElement: FEATURE_GROUPS.flatMap(({ items }, groupIndex) =>
+    items.map(({ title, body }, itemIndex) => ({
+      "@type": "ListItem",
+      position: groupIndex * 4 + itemIndex + 1,
+      name: title,
+      description: body,
+    }))
+  ),
+};
+
 function CheckIcon({ dark }: { dark: boolean }) {
   return (
     <svg viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 flex-shrink-0 mt-0.5 ${dark ? "text-sage" : "text-moss"}`}>
@@ -80,6 +97,10 @@ function CheckIcon({ dark }: { dark: boolean }) {
 export default function FeaturesPage() {
   return (
     <div className="flex flex-col min-h-full bg-ivory font-[family-name:var(--font-inter)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(featuresSchema) }}
+      />
       <Nav />
       <main className="flex flex-col flex-1">
 

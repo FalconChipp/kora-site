@@ -21,6 +21,33 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: "1.0.0",
+    date: "August 2026",
+    tag: "both",
+    summary: "General availability — the full KORA care platform is now live, with messaging, reports, insights, and automated subscription management.",
+    added: [
+      "Messaging — real-time staff messaging across homes, with unread count badge in the sidebar, in-app notification sound, and OS desktop notifications for incoming messages.",
+      "Reports & Exports — printable per-resident progress reports with mood trend charts, incident breakdowns, education attendance, goals, and an overall auto-calculated progress rating. Narrative fields for staff observations. Print-to-PDF ready.",
+      "CSV exports — download care records as flat files: residents, daily logs, incidents, form responses, and independence skill snapshots, with date-range and resident filters.",
+      "Full data export — download all organisation data across every home as a single JSON file, or email a download link to all organisation admins.",
+      "Insights — automated pattern analysis for each resident: mood trends, incident frequency, school-day incident correlation, sleep/behaviour correlation, family contact mood impact, goal completion rate, and achievement frequency.",
+      "Rota — weekly staff rota with shift types (morning, afternoon, evening, night, waking night).",
+      "Tasks — home-level task management with assignees, due dates, and priority levels.",
+      "Forms — customisable form builder and response collection for any care workflow.",
+      "Independence tracking — skill proficiency snapshots across life domains for each resident.",
+      "Handover — structured shift handover notes with flagging.",
+    ],
+    changed: [
+      "Adding a home now shows a billing confirmation step before provisioning, and automatically adjusts the organisation's billing subscription quantity.",
+      "Removing a home decrements the Stripe subscription quantity automatically.",
+      "Settings page redesigned with Account, Home, Organisation, and Support tabs.",
+    ],
+    fixed: [
+      "Report page data shape now correctly maps to the API response, resolving a crash when opening progress reports.",
+      "Exports page no longer crashes on first load when no home is selected.",
+    ],
+  },
+  {
     version: "0.2.1",
     date: "July 2026",
     tag: "desktop",

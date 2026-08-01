@@ -30,9 +30,41 @@ const VALUES = [
   },
 ];
 
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: "https://koraplatform.co.uk/about",
+  name: "About KORA",
+  description:
+    "KORA is built by SixByFive — a small team working in close partnership with residential care practitioners to give children's homes better tools for better outcomes.",
+  mainEntity: {
+    "@type": "Organization",
+    name: "SixByFive",
+    url: "https://sixbyfive.com",
+    description:
+      "Software studio that builds purposeful digital products. KORA is SixByFive's flagship platform in the social care sector.",
+    foundingDate: "2024",
+    areaServed: "GB",
+    makesOffer: {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "SoftwareApplication",
+        name: "KORA",
+        url: "https://koraplatform.co.uk",
+        applicationCategory: "BusinessApplication",
+        applicationSubCategory: "Care Management Software",
+      },
+    },
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-full bg-ivory font-[family-name:var(--font-inter)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       <Nav />
       <main className="flex flex-col flex-1">
 

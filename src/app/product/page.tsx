@@ -49,6 +49,67 @@ const softwareSchema = {
   },
 };
 
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How KORA works",
+  description:
+    "How KORA turns daily care records into patterns, insight, and statutory reports.",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Staff record daily",
+      text: "Care workers log shift notes, incidents, moods, sleep, medication, and activities in KORA. The same information they record today — but structured, timestamped, and attributed.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "KORA finds patterns",
+      text: "The platform automatically correlates records across time — identifying connections between sleep and behaviour, family contact and mood, school attendance and incidents — without anyone building a spreadsheet.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Teams act on evidence",
+      text: "Managers and keyworkers see clear dashboards. LAC reviews, statutory summaries, and Ofsted-ready reports are generated in one click — with outcome evidence ready for inspections and funding bodies.",
+    },
+  ],
+};
+
+const PRODUCT_FAQS = [
+  {
+    q: "Does KORA work without an internet connection?",
+    a: "Yes. The KORA desktop app works offline and syncs automatically when reconnected. Daily recording never depends on a stable internet connection — important for homes where connectivity can be unreliable.",
+  },
+  {
+    q: "How long does it take staff to complete a daily log?",
+    a: "Under two minutes. Daily logs have structured fields for mood, behaviour, sleep, appetite, and activity — guided so nothing gets missed, fast enough that staff will actually use them.",
+  },
+  {
+    q: "Can KORA generate reports for Ofsted inspections?",
+    a: "Yes. KORA produces inspection-ready exports with outcome evidence, incident trends, goal progress, and keyworker notes. Reports that previously took hours are generated in one click.",
+  },
+  {
+    q: "Does KORA detect patterns automatically, or does someone have to build them?",
+    a: "Automatically. KORA identifies correlations between sleep, mood, behaviour, incidents, and family contact without anyone building a spreadsheet. Managers receive alerts when thresholds are crossed.",
+  },
+  {
+    q: "How is data kept separate between homes in the same organisation?",
+    a: "Each home has its own isolated database. Staff assigned to one home cannot view records from another — even within the same organisation. This is enforced at the database level, not just through access controls.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: PRODUCT_FAQS.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 const PROBLEMS = [
   {
     title: "Recording that goes nowhere",
@@ -160,6 +221,14 @@ export default function ProductPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Nav />
       <main className="flex flex-col flex-1">
@@ -324,6 +393,26 @@ export default function ProductPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16 sm:py-24 bg-ivory">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 sm:mb-14">
+              <p className="text-xs font-semibold uppercase tracking-widest text-moss mb-3 sm:mb-4">Common questions</p>
+              <h2 className="font-[family-name:var(--font-sora)] font-semibold text-2xl sm:text-3xl text-forest leading-snug">
+                Questions about how KORA works
+              </h2>
+            </div>
+            <div className="flex flex-col divide-y divide-sage/20">
+              {PRODUCT_FAQS.map(({ q, a }) => (
+                <div key={q} className="py-6 sm:py-8">
+                  <h3 className="font-[family-name:var(--font-sora)] font-semibold text-base sm:text-lg text-forest mb-3">{q}</h3>
+                  <p className="text-sm sm:text-base text-charcoal/60 leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
