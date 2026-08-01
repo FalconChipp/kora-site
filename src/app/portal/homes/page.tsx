@@ -96,7 +96,7 @@ export default function HomesPage() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Sycamore House"
+                placeholder="e.g. Kora House"
                 className="rounded-xl border border-sage/40 px-4 py-3 text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-moss/40 transition"
               />
             </div>

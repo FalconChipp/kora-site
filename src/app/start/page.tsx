@@ -136,7 +136,7 @@ function StartForm() {
               required
               value={orgName}
               onChange={(e) => setOrgName(e.target.value)}
-              placeholder="e.g. Sycamore Care Ltd"
+              placeholder="e.g. Kora Care Ltd"
               className="rounded-xl border border-sage/40 px-4 py-3 text-sm text-charcoal focus:outline-none focus:ring-2 focus:ring-moss/40 focus:border-moss transition"
             />
           </div>
