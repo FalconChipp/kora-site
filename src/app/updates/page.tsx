@@ -21,6 +21,28 @@ type Release = {
 
 const RELEASES: Release[] = [
   {
+    version: "1.0.3",
+    date: "August 2026",
+    tag: "platform",
+    summary: "Stability fix for session handling.",
+    fixed: [
+      "Login sessions no longer crash on the desktop app when multiple windows attempt to renew authentication at the same time.",
+    ],
+  },
+  {
+    version: "1.0.2",
+    date: "August 2026",
+    tag: "both",
+    summary: "Medication Administration Records, daily log medication tracking, and signed Windows installer.",
+    added: [
+      "MAR chart — a full Medication Administration Record for each resident. Manage the prescribed medication list (routine and PRN), sign off each dose with status (given, refused, not required, away from home, or omitted), and log PRN administrations with reason and time. Controlled drugs are flagged separately.",
+      "Daily log medication — record which medications were administered during a shift, including dose, time given, and whether prescribed or over-the-counter.",
+    ],
+    changed: [
+      "Windows installer is now code-signed via Azure Trusted Signing, reducing SmartScreen prompts on first install.",
+    ],
+  },
+  {
     version: "1.0.0",
     date: "August 2026",
     tag: "both",
