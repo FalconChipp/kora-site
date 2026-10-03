@@ -74,7 +74,7 @@ function StartForm() {
 
           <p className="text-xs text-charcoal/45 mt-2.5 text-center">
             {trial
-              ? "No card charged for 7 days · Cancel anytime"
+              ? "7 days free, then £125/month for your first home. Payment details required. Cancel before the trial ends to avoid being charged."
               : "£125/month · Billed immediately · Cancel anytime"}
           </p>
         </div>
@@ -157,7 +157,11 @@ function StartForm() {
         </form>
 
         <p className="text-xs text-charcoal/35 text-center mt-5 leading-relaxed">
-          By continuing you agree to our terms. Already have an account?{" "}
+          {/* Changed: make the existing terms reference usable before checkout. */}
+          By continuing you agree to our{" "}
+          <Link href="/terms" className="text-moss underline underline-offset-2">terms</Link>.
+          {" "}Read our <Link href="/privacy" className="text-moss underline underline-offset-2">privacy notice</Link>.
+          {" "}Already have an account?{" "}
           <Link href="/portal/login" className="text-moss underline underline-offset-2">Sign in</Link>
         </p>
       </div>

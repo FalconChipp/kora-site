@@ -27,7 +27,8 @@ const FEATURES = [
 const FAQS = [
   {
     q: "Is there a free trial?",
-    a: "Yes — every new home starts with a 7-day free trial, no card required. We'll onboard your team and get everything set up during the trial period.",
+    // Changed: align with the existing Stripe checkout, which collects payment details.
+    a: "Yes — start with a 7-day free trial. Payment details are collected at checkout; your subscription starts billing after the trial unless you cancel. The first home is £125/month, with additional homes at £25/month each. Contact us if you would like a demo before starting.",
   },
   {
     q: "Are there any setup fees or per-user charges?",
